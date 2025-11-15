@@ -1,27 +1,20 @@
-# terraform-aws-networking
-Private and public network creation
-
-This module manages the creation of VPCs and subnets, allowing for the creation of both private and public subnets. 
-
-Example usage:
-
-´´´´´´
 module "vpc" {
   source = "./modules/networking"
   vpc_config = {
     cidr_block = "10.0.0.0/16"
-    name       = "your_vpc"
+    name       = "13-local-modules"
   }
-}
+
   subnet_config = {
     subnet_1 = {
       cidr_block = "10.0.0.0/24"
       az         = "us-east-1a"
     }
- }
+  }
     subnet_2 = {
       cidr_block = "10.0.1.0/24"
+      #Public subnets are indicated by setting the "public" option to true. 
       public     = true
       az         = "us-east-1b"
     }
-´´´´´´
+}
