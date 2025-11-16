@@ -26,7 +26,7 @@ resource "aws_subnet" "this" {
   cidr_block        = each.value.cidr_block
 
   tags = {
-    Name = each.key
+    Name   = each.key
     Access = each.value.public ? "Public" : "Private"
   }
 
@@ -45,8 +45,8 @@ resource "aws_subnet" "this" {
 }
 
 resource "aws_internet_gateway" "this" {
-  count = length(local.public_subnets) > 0 ? 1 : 0
-    vpc_id = aws_vpc.this.id
+  count  = length(local.public_subnets) > 0 ? 1 : 0
+  vpc_id = aws_vpc.this.id
 }
 
 resource "aws_route_table" "public_route_table" {
